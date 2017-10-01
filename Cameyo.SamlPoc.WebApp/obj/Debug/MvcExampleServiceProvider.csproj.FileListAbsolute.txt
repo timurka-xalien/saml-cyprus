@@ -1,0 +1,107 @@
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.dll.config
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.pdb
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Antlr3.Runtime.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Microsoft.Web.Infrastructure.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Newtonsoft.Json.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.Formatting.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.WebRequest.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.WebHost.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Mvc.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Optimization.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Razor.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Deployment.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Razor.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\WebGrease.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.pdb
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Newtonsoft.Json.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.Formatting.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.WebRequest.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.WebHost.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Mvc.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Razor.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Deployment.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Razor.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.csprojResolveAssemblyReference.cache
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace SAML Examples\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.pdb
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.dll.config
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.pdb
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Antlr3.Runtime.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Microsoft.Web.Infrastructure.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Newtonsoft.Json.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.Formatting.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.WebRequest.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.WebHost.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Mvc.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Optimization.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Razor.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Deployment.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Razor.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\WebGrease.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.pdb
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Newtonsoft.Json.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.Formatting.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.WebRequest.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.WebHost.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Mvc.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Razor.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Deployment.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Razor.xml
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.csprojResolveAssemblyReference.cache
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.csproj.CoreCompileInputs.cache
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.dll
+c:\Dropbox\Freelance\SAML Cyprus\IdentityProviders\ComponentSpace\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.pdb
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.dll.config
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\MvcExampleServiceProvider.pdb
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Antlr3.Runtime.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Microsoft.Web.Infrastructure.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Newtonsoft.Json.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.Formatting.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.WebRequest.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.WebHost.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Mvc.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Optimization.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Razor.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Deployment.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Razor.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\WebGrease.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.pdb
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\ComponentSpace.SAML2.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\Newtonsoft.Json.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.Formatting.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Net.Http.WebRequest.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Http.WebHost.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Mvc.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.Razor.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Deployment.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\bin\System.Web.WebPages.Razor.xml
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.csprojResolveAssemblyReference.cache
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.csproj.CoreCompileInputs.cache
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.dll
+c:\Dropbox\Freelance\SAML Cyprus\Sources\Examples\SSO\HighLevelAPI\MVC\MvcExampleServiceProvider\obj\Debug\MvcExampleServiceProvider.pdb
