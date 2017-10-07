@@ -44,3 +44,4 @@ C:\Dropbox\Freelance\SAML Cyprus\Sources\Cameyo.SamlPoc.WebApp\bin\ComponentSpac
 C:\Dropbox\Freelance\SAML Cyprus\Sources\Cameyo.SamlPoc.WebApp\bin\ComponentSpace.SAML2.pdb
 C:\Dropbox\Freelance\SAML Cyprus\Sources\Cameyo.SamlPoc.WebApp\bin\ComponentSpace.SAML2.xml
 C:\Dropbox\Freelance\SAML Cyprus\Sources\Cameyo.SamlPoc.WebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Dropbox\Freelance\SAML Cyprus\Sources\Cameyo.SamlPoc.WebApp\obj\Debug\Cameyo.SamlPoc.WebApp.csprojResolveAssemblyReference.cache

@@ -15,7 +15,7 @@
     <AssemblyName>Cameyo.SamlPoc.WebApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -149,6 +149,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SamlConfigurationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\accordion.css" />
@@ -194,19 +195,8 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Certificates\idp.cer" />
     <Content Include="saml.config" />
-    <Content Include="Certificates\adfs.cer" />
-    <Content Include="Certificates\okta.cer" />
-    <Content Include="Certificates\wso2.cer" />
-    <Content Include="Certificates\onelogin.cer" />
-    <Content Include="Certificates\pingone.cer" />
-    <Content Include="Certificates\bitium.cer" />
-    <Content Include="Certificates\centrify.cer" />
-    <Content Include="Certificates\azure.cer" />
-    <Content Include="Certificates\google.cer" />
-    <Content Include="Certificates\salesforce.cer" />
-    <Content Include="Certificates\shibboleth.cer" />
+    <Content Include="Certificates\idp.pfx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -271,7 +261,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52221</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51481/</IISUrl>
+          <IISUrl>http://samltest</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

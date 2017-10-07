@@ -15,11 +15,13 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult SingleSignOn()
+        public ActionResult SingleSignOn(string idpName)
         {
             // To login at the service provider, initiate single sign-on to the identity provider (SP-initiated SSO).
-            string partnerIdP = WebConfigurationManager.AppSettings[AppSettings.PartnerIdP];
-            SAMLServiceProvider.InitiateSSO(Response, null, partnerIdP);
+            //string partnerIdP = WebConfigurationManager.AppSettings[idpName];
+            SAMLServiceProvider.InitiateSSO(Response, null, idpName);
+
+            Session["IdentityProvider"] = idpName;
 
             return new EmptyResult();
         }

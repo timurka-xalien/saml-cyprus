@@ -14,6 +14,11 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        public HomeController()
+        {
+            //SamlConfigurationManager.ConfigureIdentityProviders();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -28,7 +33,7 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
             if (SAMLServiceProvider.CanSLO())
             {
                 // Request logout at the identity provider.
-                string partnerIdP = WebConfigurationManager.AppSettings[AppSettings.PartnerIdP];
+                string partnerIdP = Session["IdentityProvider"].ToString();
                 SAMLServiceProvider.InitiateSLO(Response, null, null, partnerIdP);
 
                 return new EmptyResult();

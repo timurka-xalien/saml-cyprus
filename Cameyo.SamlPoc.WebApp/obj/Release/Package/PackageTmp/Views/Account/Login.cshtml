@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Service Provider Login";
+}
+
+<h1>Login to the Cameyo SAML Test Service Provider</h1>
+<p>
+    @Html.ActionLink("SSO to the Cone Identity Provider", "SingleSignOn",  new { idpName = "cone" }, new {title= "Initiates SAML single sign-on to the Cone Identity Provider." })
+</p>
+<p>
+    @Html.ActionLink("SSO to the Kentor Identity Provider", "SingleSignOn", new { idpName = "kentor" }, new { title = "Initiates SAML single sign-on to the Kentor Identity Provider." })
+</p>
+<p>
+    @Html.ActionLink("SSO to the Shibboleth Identity Provider", "SingleSignOn", new { idpName = "shibboleth" }, new { title = "Initiates SAML single sign-on to the Shib Identity Provider." })
+</p>
+
