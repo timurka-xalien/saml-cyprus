@@ -1,27 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ComponentSpace.SAML2;
+﻿using ComponentSpace.SAML2;
 using ComponentSpace.SAML2.Configuration;
 using System.Configuration;
+using System;
 
-namespace Cameyo.SamlPoc.WebApp
+namespace Cameyo.SamlPoc.WebApp.Services
 {
     public static class SamlConfigurationManager
     {
-        const string ServiceProviderName = "saml:ServiceProvider:Name";
-        const string ServiceProviderDescription = "saml:ServiceProvider:Description";
-        const string ServiceProviderAssertionConsumerServiceUrl = "saml:ServiceProvider:AssertionConsumerServiceUrl";
-        const string ServiceProviderLocalCertificateFile = "saml:ServiceProvider:LocalCertificateFile";
-        const string ServiceProviderLocalCertificatePassword = "saml:ServiceProvider:LocalCertificatePassword";
+        private const string ServiceProviderName = "saml:ServiceProvider:Name";
+        private const string ServiceProviderDescription = "saml:ServiceProvider:Description";
+        private const string ServiceProviderAssertionConsumerServiceUrl = "saml:ServiceProvider:AssertionConsumerServiceUrl";
+        private const string ServiceProviderLocalCertificateFile = "saml:ServiceProvider:LocalCertificateFile";
+        private const string ServiceProviderLocalCertificatePassword = "saml:ServiceProvider:LocalCertificatePassword";
 
-        public static void ConfigureIdentityProviders()
+        public static void ConfigureIdentityProviders(SamlIdentityProvidersRepository repository)
         {
             SAMLConfiguration samlConfiguration = new SAMLConfiguration();
 
+            ConfigureServiceProvider(samlConfiguration);
+
+            ConfigureIdentityProvidersUsingRepository(samlConfiguration, repository);
+            // ConfigureIdentityProvidersUsingHardCodedConfiguration(samlConfiguration);
+
+            SAMLController.Configuration = samlConfiguration;
+        }
+
+        private static void ConfigureServiceProvider(SAMLConfiguration samlConfiguration)
+        {
             samlConfiguration.LocalServiceProviderConfiguration = new
-            LocalServiceProviderConfiguration()
+                LocalServiceProviderConfiguration()
             {
                 Name = ConfigurationManager.AppSettings[ServiceProviderName],
                 Description = ConfigurationManager.AppSettings[ServiceProviderDescription],
@@ -29,7 +36,34 @@ namespace Cameyo.SamlPoc.WebApp
                 LocalCertificateFile = ConfigurationManager.AppSettings[ServiceProviderLocalCertificateFile],
                 LocalCertificatePassword = ConfigurationManager.AppSettings[ServiceProviderLocalCertificatePassword]
             };
+        }
 
+        private static void ConfigureIdentityProvidersUsingRepository(
+            SAMLConfiguration samlConfiguration, 
+            SamlIdentityProvidersRepository repository)
+        {
+            var providers = repository.GetRegisteredIdentityProviders();
+
+            foreach (var provider in providers)
+            {
+                samlConfiguration.AddPartnerIdentityProvider(
+                 new PartnerIdentityProviderConfiguration()
+                 {
+                     Name = provider.Name,
+                     Description = provider.Description,
+                     SignAuthnRequest = provider.SignAuthnRequest,
+                     SingleSignOnServiceUrl = provider.SingleSignOnUrl,
+                     SingleLogoutServiceUrl = provider.SingleLogoutUrl,
+                     PartnerCertificateFile = provider.CertificateFile,
+                     UseEmbeddedCertificate = provider.UseEmbeddedCertificate,
+                     DisableInboundLogout = !provider.SingleLogoutSupported,
+                     DisableOutboundLogout = !provider.SingleLogoutSupported
+                 });
+            }
+        }
+
+        private static void ConfigureIdentityProvidersUsingHardcodedConfiguration(SAMLConfiguration samlConfiguration)
+        {
             samlConfiguration.AddPartnerIdentityProvider(
              new PartnerIdentityProviderConfiguration()
              {
@@ -63,8 +97,6 @@ namespace Cameyo.SamlPoc.WebApp
                      SingleLogoutServiceUrl = "http://kentor-idp/Logout",
                      UseEmbeddedCertificate = true
                  });
-
-            SAMLController.Configuration = samlConfiguration;
         }
     }
 }

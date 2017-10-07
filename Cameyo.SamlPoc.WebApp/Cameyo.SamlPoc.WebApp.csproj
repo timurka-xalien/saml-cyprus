@@ -148,8 +148,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailDomain.cs" />
+    <Compile Include="Models\SamlIdentityProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SamlConfigurationManager.cs" />
+    <Compile Include="Services\SamlConfigurationManager.cs" />
+    <Compile Include="Services\SamlIdentityProvidersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\accordion.css" />
@@ -198,6 +201,7 @@
     <Content Include="saml.config" />
     <Content Include="Certificates\idp.pfx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="saml-idps.json" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -236,7 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

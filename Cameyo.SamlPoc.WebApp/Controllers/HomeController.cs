@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 using ComponentSpace.SAML2;
+using Cameyo.SamlPoc.WebApp.Services;
 
 namespace Cameyo.SamlPoc.WebApp.Controllers
 {
@@ -16,7 +17,7 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
     {
         public HomeController()
         {
-            //SamlConfigurationManager.ConfigureIdentityProviders();
+           //  SamlConfigurationManager.ConfigureIdentityProviders();
         }
 
         public ActionResult Index()

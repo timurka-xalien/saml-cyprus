@@ -1,10 +1,9 @@
-﻿using System;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-using ComponentSpace.SAML2.Configuration;
+using Cameyo.SamlPoc.WebApp.Services;
 
 namespace Cameyo.SamlPoc.WebApp
 {
@@ -22,7 +21,7 @@ namespace Cameyo.SamlPoc.WebApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            SamlConfigurationManager.ConfigureIdentityProviders();
+            SamlConfigurationManager.ConfigureIdentityProviders(new SamlIdentityProvidersRepository());
         }
     }
 }
