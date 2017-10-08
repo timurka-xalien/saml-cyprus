@@ -28,17 +28,26 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
         [HttpPost]
         public ActionResult Logout()
         {
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Request for SLO received.");
+
             // Logout locally.
             FormsAuthentication.SignOut();
+
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: User was logged out locally.");
 
             if (SAMLServiceProvider.CanSLO())
             {
                 // Request logout at the identity provider.
                 string partnerIdP = Session["IdentityProvider"].ToString();
+
+                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Initiating SLO with IdP {partnerIdP}.");
+
                 SAMLServiceProvider.InitiateSLO(Response, null, null, partnerIdP);
 
                 return new EmptyResult();
             }
+
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Identity Provider doesn't support SLO.");
 
             return RedirectToAction("Index", "Home");
         }

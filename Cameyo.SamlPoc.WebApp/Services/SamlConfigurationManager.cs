@@ -1,7 +1,7 @@
 ﻿using ComponentSpace.SAML2;
 using ComponentSpace.SAML2.Configuration;
 using System.Configuration;
-using System;
+using System.Linq;
 
 namespace Cameyo.SamlPoc.WebApp.Services
 {
@@ -13,8 +13,10 @@ namespace Cameyo.SamlPoc.WebApp.Services
         private const string ServiceProviderLocalCertificateFile = "saml:ServiceProvider:LocalCertificateFile";
         private const string ServiceProviderLocalCertificatePassword = "saml:ServiceProvider:LocalCertificatePassword";
 
-        public static void ConfigureIdentityProviders(SamlIdentityProvidersRepository repository)
+        public static void Configure(SamlIdentityProvidersRepository repository)
         {
+            SamlPocTraceListener.Log("SAML", $"SamlConfigurationManager.Configure: Starting configuration of SAML environment.");
+
             SAMLConfiguration samlConfiguration = new SAMLConfiguration();
 
             ConfigureServiceProvider(samlConfiguration);
@@ -23,6 +25,8 @@ namespace Cameyo.SamlPoc.WebApp.Services
             // ConfigureIdentityProvidersUsingHardCodedConfiguration(samlConfiguration);
 
             SAMLController.Configuration = samlConfiguration;
+
+            SamlPocTraceListener.Log("SAML", $"SamlConfigurationManager.Configure: Ended configuration of SAML environment.");
         }
 
         private static void ConfigureServiceProvider(SAMLConfiguration samlConfiguration)
@@ -36,13 +40,23 @@ namespace Cameyo.SamlPoc.WebApp.Services
                 LocalCertificateFile = ConfigurationManager.AppSettings[ServiceProviderLocalCertificateFile],
                 LocalCertificatePassword = ConfigurationManager.AppSettings[ServiceProviderLocalCertificatePassword]
             };
+
+            var spConfig = Utils.SerializeToJson(samlConfiguration.LocalServiceProviderConfiguration);
+            SamlPocTraceListener.Log("SAML", $"SamlConfigurationManager.ConfigureServiceProvider: Service Provider configuration:\r\n{spConfig}");
         }
 
         private static void ConfigureIdentityProvidersUsingRepository(
             SAMLConfiguration samlConfiguration, 
             SamlIdentityProvidersRepository repository)
         {
+            SamlPocTraceListener.Log("SAML", "SamlConfigurationManager.ConfigureIdentityProvidersUsingRepository: Loading Identity Providers");
+
             var providers = repository.GetRegisteredIdentityProviders();
+
+            SamlPocTraceListener.Log("SAML", $"SamlConfigurationManager.ConfigureIdentityProvidersUsingRepository: {providers.Count()} Identity Providers loaded:");
+
+            var providersConfig = Utils.SerializeToJson(providers);
+            SamlPocTraceListener.Log("SAML", $"SamlConfigurationManager.ConfigureIdentityProvidersUsingRepository: Identity Providers configuration:\r\n{providersConfig}");
 
             foreach (var provider in providers)
             {

@@ -38,7 +38,7 @@ namespace Cameyo.SamlPoc.WebApp.Services
         }
 
         // Use it in the form: Log("SAML", "SomeFunction: something");
-        public static void Log(string component, string msg, bool addNewLine)
+        public static void Log(string component, string msg, bool addNewLine = true)
         {
             var logFile = Path.Combine(Path.GetTempPath(), component + ".log");
 

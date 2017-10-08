@@ -93,33 +93,20 @@ namespace Cameyo.SamlPoc.WebApp.Services
                 ipdKentor,
             };
 
-            var data = JsonConvert.SerializeObject(providers, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.None,
-                TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                Formatting = Formatting.Indented,
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-                Error = (sender, args) => args.ErrorContext.Handled = true,
-            });
+            string data = Utils.SerializeToJson(providers);
 
-            using (var streamWriter = new StreamWriter(DefaultConfigAbsolutePath, false))
-            {
-                streamWriter.Write(data);
-            }
+            Utils.WriteTextToFile(DefaultConfigAbsolutePath, data);
         }
 
         public IEnumerable<SamlIdentityProvider> GetRegisteredIdentityProviders()
         {
             string data;
 
-            using (var streamReader = new StreamReader(DefaultConfigAbsolutePath, Encoding.UTF8))
-            {
-                data = streamReader.ReadToEnd();
-            }
+            data = Utils.ReadTextFromFile(DefaultConfigAbsolutePath);
 
-            return JsonConvert.DeserializeObject<List<SamlIdentityProvider>>(data);
+            return Utils.DeserializeFromJson<List<SamlIdentityProvider>>(data);
         }
+
         private string DefaultConfigAbsolutePath
         {
             get

@@ -21,7 +21,7 @@ namespace Cameyo.SamlPoc.WebApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            SamlConfigurationManager.ConfigureIdentityProviders(new SamlIdentityProvidersRepository());
+            SamlConfigurationManager.Configure(new SamlIdentityProvidersRepository());
         }
     }
 }
