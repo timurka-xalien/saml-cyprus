@@ -4,6 +4,8 @@ using System.Web.Mvc;
 
 using ComponentSpace.SAML2;
 using Cameyo.SamlPoc.WebApp.Services;
+using System.Security.Claims;
+using System.Linq;
 
 namespace Cameyo.SamlPoc.WebApp.Controllers
 {
@@ -51,8 +53,14 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
             // There are no restrictions on the method of authentication.
             FormsAuthentication.SetAuthCookie(userName, false);
 
-            // Save the attributes.
-            Session[AttributesSessionKey] = attributes;
+            ((ClaimsIdentity)HttpContext.User.Identity).AddClaim(new Claim(ClaimTypes.Name, userName));
+
+            // Save received attributes as claims
+            if (attributes != null)
+            {
+                ((ClaimsIdentity)HttpContext.User.Identity)
+                    .AddClaims(attributes.Select(attr => new Claim(attr.Key, attr.Value)));
+            }
 
             // Redirect to the target URL.
             return RedirectToLocal(targetUrl);
