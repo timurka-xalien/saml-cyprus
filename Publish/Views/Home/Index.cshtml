@@ -1,4 +1,7 @@
-﻿@{
+﻿@using System.Security.Claims
+@using System.Linq
+
+@{
     ViewBag.Title = "Service Provider";
 }
 
@@ -9,13 +12,13 @@
 
 @{
     // Display the attributes returned by the identity provider.
-    var attributes = (IDictionary<string, string>)Session[Cameyo.SamlPoc.WebApp.Controllers.SAMLController.AttributesSessionKey];
+    var claims = ((ClaimsIdentity)HttpContext.Current.User.Identity).Claims;
 
-    if (attributes != null && attributes.Count > 0) {
+    if (claims.Count() > 0) {
         <h2>User Attributes</h2>
 
-        foreach (var attributeName in attributes.Keys) {
-            <p>@attributeName: @attributes[attributeName]</p>
+        foreach (var claim in claims) {
+            <p>@claim.Type: @claim.Value</p>
         }
     }
 }

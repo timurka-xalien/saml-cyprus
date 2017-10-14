@@ -202,6 +202,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="saml.config" />
     <Content Include="Certificates\idp.pfx" />
+    <Content Include="Certificates\idp.cer" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="saml-idps.json" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
