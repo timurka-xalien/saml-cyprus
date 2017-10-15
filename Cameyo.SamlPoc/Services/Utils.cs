@@ -3,13 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Web;
 
-namespace Cameyo.SamlPoc.WebApp.Services
+namespace Cameyo.SamlPoc.Services
 {
     public static class Utils
     {
+        public static string GetEmailDomain(string email)
+        {
+            MailAddress address = new MailAddress(email);
+            return address.Host;
+        }
+
         public static string SerializeToJson<T>(T data)
         {
             return JsonConvert.SerializeObject(data, new JsonSerializerSettings

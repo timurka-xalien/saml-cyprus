@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Cameyo.SamlPoc.WebApp.Models
+namespace Cameyo.SamlPoc.Models
 {
     public class SamlIdentityProvider
     {

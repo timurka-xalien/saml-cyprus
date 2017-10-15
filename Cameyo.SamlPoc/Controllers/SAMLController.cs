@@ -3,15 +3,38 @@ using System.Web.Security;
 using System.Web.Mvc;
 
 using ComponentSpace.SAML2;
-using Cameyo.SamlPoc.WebApp.Services;
+using Cameyo.SamlPoc.Services;
 using System.Security.Claims;
 using System.Linq;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System.Web;
+using Cameyo.SamlPoc.Models;
 
-namespace Cameyo.SamlPoc.WebApp.Controllers
+namespace Cameyo.SamlPoc.Controllers
 {
     public class SAMLController : Controller
     {
         public const string AttributesSessionKey = "";
+
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+        private AuthenticationService _authenticationService;
+
+        public SAMLController()
+        {
+            _authenticationService = new AuthenticationService(AuthenticationManager, UserManager);
+        }
+
+        public SAMLController(
+            ApplicationUserManager userManager, 
+            ApplicationSignInManager signInManager)
+            : this()
+        {
+            SignInManager = signInManager;
+            UserManager = userManager;
+        }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
@@ -51,24 +74,62 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
             // Login automatically using the asserted identity.
             // This example uses forms authentication. Your application can use any authentication method you choose.
             // There are no restrictions on the method of authentication.
-            FormsAuthentication.SetAuthCookie(userName, false);
 
-            ((ClaimsIdentity)HttpContext.User.Identity).AddClaim(new Claim(ClaimTypes.Name, userName));
+            var result = SignInUserLocally(userName, attributes);
 
-            // Save received attributes as claims
-            if (attributes != null)
+            if (result != null)
             {
-                ((ClaimsIdentity)HttpContext.User.Identity)
-                    .AddClaims(attributes.Select(attr => new Claim(attr.Key, attr.Value)));
+                return result;
             }
 
             // Redirect to the target URL.
             return RedirectToLocal(targetUrl);
         }
 
+        private ActionResult SignInUserLocally(string userName, IDictionary<string, string> attributes)
+        {
+            SamlPocTraceListener.Log("SAML", "SamlController.SignInUserLocally: Sign in user locally.");
+
+            var user = UserManager.FindByName(userName);
+
+            if (user == null)
+            {
+                SamlPocTraceListener.Log("SAML", $"SamlController.SignInUserLocally: Register new user: {userName}");
+
+                // Register new user
+                var email = userName.Contains("@") ? userName : null;
+                user = new ApplicationUser { UserName = userName, Email = email };
+                var result = UserManager.Create(user, userName); // Use fake password
+
+                if (!result.Succeeded)
+                {
+                    var errors = string.Join("\r\n", result.Errors);
+
+                    SamlPocTraceListener.Log(
+                        "SAML",
+                        $"SamlController.SignInUserLocally: Error while registering user: {errors}");
+
+                    return View("Error");
+                }
+            }
+            else
+            {
+                SamlPocTraceListener.Log("SAML", $"SamlController.SignInUserLocally: Found existing user: {userName}");
+            }
+
+            // Add user name to attributes
+            attributes = attributes ?? new Dictionary<string, string>();
+            attributes[ClaimTypes.Name] = userName;
+
+            // Save received attributes as claims
+            _authenticationService.Authenticate(AuthenticationType.Saml, userName, userName, attributes);
+
+            return null;
+        }
+
         public ActionResult SLOService()
         {
-            SamlPocTraceListener.Log("SAML", "SamlController.SLOService: Request to single logout received");
+            SamlPocTraceListener.Log("SAML", "SamlController.SLOService: Request to single logout received from Identity Provider");
 
             // Receive the single logout request or response.
             // If a request is received then single logout is being initiated by the identity provider.
@@ -85,7 +146,7 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
                 SamlPocTraceListener.Log("SAML", "SamlController.SLOService: Processing IdP initiated logout");
 
                 // Logout locally.
-                FormsAuthentication.SignOut();
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
                 SamlPocTraceListener.Log("SAML", "SamlController.SLOService: User was logged out. Respond to IdP that logout succeeded.");
 
@@ -97,10 +158,108 @@ namespace Cameyo.SamlPoc.WebApp.Controllers
                 SamlPocTraceListener.Log("SAML", "SamlController.SLOService: SP-initiated SLO has completed. Redirecting to login page.");
 
                 // SP-initiated SLO has completed.
-                FormsAuthentication.RedirectToLoginPage();
+                return RedirectToAction("Index", "Home");
             }
 
             return new EmptyResult();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Login(string domain, string returnUrl)
+        {
+            SamlPocTraceListener.Log("SAML", $"SamlController.SingleSignOn: Request for SSO with IdP of domain {domain} received.");
+
+            // Get appropriate IdP name
+            var idpName = SamlIdentityProvidersRepository.GetIdentityProviderName(domain);
+
+            if (idpName == null)
+            {
+                SamlPocTraceListener.Log("SAML", $"SamlController.SingleSignOn: IdP for domain {domain} not found.");
+
+                return View("Error");
+            }
+
+            // To login at the service provider, initiate single sign-on to the identity provider (SP-initiated SSO).
+            SAMLServiceProvider.InitiateSSO(Response, null, idpName);
+
+            SamlPocTraceListener.Log("SAML", $"SamlController.SingleSignOn: SSO with IdP {idpName} initiated.");
+
+            Session["IdentityProvider"] = idpName;
+
+            return new EmptyResult();
+        }
+
+        public ActionResult LogOff()
+        {
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Request for SLO received.");
+
+            // Logout locally.
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: User was logged out locally.");
+
+            if (SAMLServiceProvider.CanSLO())
+            {
+                // Request logout at the identity provider.
+                string partnerIdP = Session["IdentityProvider"].ToString();
+
+                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Initiating SLO with IdP {partnerIdP}.");
+
+                SAMLServiceProvider.InitiateSLO(Response, null, null, partnerIdP);
+
+                return new EmptyResult();
+            }
+            else
+            {
+                // Logout locally.
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            }
+
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Identity Provider doesn't support SLO.");
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return
+                    HttpContext?.GetOwinContext()?.Authentication ??
+                    System.Web.HttpContext.Current.GetOwinContext().Authentication;
+            }
+        }
+
+        private ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            set
+            {
+                _signInManager = value;
+            }
+        }
+
+        private ApplicationUserManager UserManager
+        {
+            get
+            {
+                return
+                    _userManager
+                    ?? HttpContext?.GetOwinContext()?.GetUserManager<ApplicationUserManager>() ??
+                    System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            set
+            {
+                _userManager = value;
+            }
+        }
+
+        private SamlIdentityProvidersRepository SamlIdentityProvidersRepository
+        {
+            get => SamlIdentityProvidersRepository.GetInstance();
         }
     }
 }

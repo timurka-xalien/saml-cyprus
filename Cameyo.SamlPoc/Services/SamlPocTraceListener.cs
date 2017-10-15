@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 
-namespace Cameyo.SamlPoc.WebApp.Services
+namespace Cameyo.SamlPoc.Services
 {
     public class SamlPocTraceListener : TraceListener
     {

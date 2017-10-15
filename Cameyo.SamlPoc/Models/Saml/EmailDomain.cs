@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cameyo.SamlPoc.WebApp.Models
+namespace Cameyo.SamlPoc.Models
 {
     public class EmailDomain
     {

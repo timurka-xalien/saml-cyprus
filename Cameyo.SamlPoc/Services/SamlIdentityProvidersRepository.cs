@@ -1,15 +1,23 @@
-﻿using Cameyo.SamlPoc.WebApp.Models;
+﻿using Cameyo.SamlPoc.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
-namespace Cameyo.SamlPoc.WebApp.Services
+namespace Cameyo.SamlPoc.Services
 {
-    public class SamlIdentityProvidersRepository
+    public class SamlIdentityProvidersRepository : IDisposable
     {
         private const string DefaultConfigPath = "saml-idps.json";
+
+        private static readonly SamlIdentityProvidersRepository _instance = new SamlIdentityProvidersRepository();
+        private IEnumerable<SamlIdentityProvider> _registeredProviders;
+
+        private SamlIdentityProvidersRepository()
+        {
+        }
 
         public void CreateDefaultConfiguration()
         {
@@ -100,11 +108,42 @@ namespace Cameyo.SamlPoc.WebApp.Services
 
         public IEnumerable<SamlIdentityProvider> GetRegisteredIdentityProviders()
         {
-            string data;
+            if (_registeredProviders == null)
+            {
+                var data = Utils.ReadTextFromFile(DefaultConfigAbsolutePath);
 
-            data = Utils.ReadTextFromFile(DefaultConfigAbsolutePath);
+                _registeredProviders = Utils.DeserializeFromJson<List<SamlIdentityProvider>>(data);
+            }
 
-            return Utils.DeserializeFromJson<List<SamlIdentityProvider>>(data);
+            return _registeredProviders;
+        }
+
+        private IEnumerable<string> GetRegisteredEmailDomains()
+        {
+            return GetRegisteredIdentityProviders()
+                .SelectMany(idp => idp.RegisteredDomains.Select(d => d.Domain));
+        }
+
+        public bool IsSamlAuthenticationRequired(string emailDomain)
+        {
+            return GetRegisteredEmailDomains().Contains(emailDomain);
+        }
+
+        public string GetIdentityProviderName(string domain)
+        {
+            return GetRegisteredIdentityProviders()
+                .Where(idp => idp.RegisteredDomains.Any(d => d.Domain == domain))
+                .Select(idp => idp.Name)
+                .SingleOrDefault();
+        }
+
+        public static SamlIdentityProvidersRepository GetInstance()
+        {
+            return _instance;
+        }
+
+        public void Dispose()
+        {
         }
 
         private string DefaultConfigAbsolutePath

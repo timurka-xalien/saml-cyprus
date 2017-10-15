@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Cameyo.SamlPoc.Models;
+using Cameyo.SamlPoc.Services;
+using ComponentSpace.SAML2;
 
 namespace Cameyo.SamlPoc.Controllers
 {
@@ -17,39 +19,18 @@ namespace Cameyo.SamlPoc.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private AuthenticationService _authenticationService;
 
         public AccountController()
         {
+            _authenticationService = new AuthenticationService(AuthenticationManager, UserManager);
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+            : this()
         {
             UserManager = userManager;
             SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
         }
 
         //
@@ -73,22 +54,27 @@ namespace Cameyo.SamlPoc.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            // Check if we need to login user locally (in case no SAML Identity Provider is registered for specified email domain)
+            var emailDomain = Utils.GetEmailDomain(model.Email);
+            var isSamlAuthenticationRequired = 
+                SamlIdentityProvidersRepository.IsSamlAuthenticationRequired(emailDomain);
+
+            if (isSamlAuthenticationRequired)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                return RedirectToAction("Login", "SAML", new { domain = emailDomain, returnUrl = returnUrl });
             }
+
+            // Authenticate locally
+            var succeeded = _authenticationService.Authenticate(AuthenticationType.Local, model.Email, model.Password);
+
+            if (succeeded)
+            { 
+                return RedirectToLocal(returnUrl);
+            }
+
+            ModelState.AddModelError("", "Invalid login attempt.");
+
+            return View(model);
         }
 
         //
@@ -392,6 +378,40 @@ namespace Cameyo.SamlPoc.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            var authenticationType = ((ClaimsIdentity)User.Identity).FindFirstValue(nameof(AuthenticationType));
+
+            if (authenticationType == AuthenticationType.Saml.ToString())
+            {
+                // return RedirectToAction("LogOff", "SAML");
+
+                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Request for SLO received.");
+
+                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: User was logged out locally.");
+
+                if (SAMLServiceProvider.CanSLO())
+                {
+                    // Request logout at the identity provider.
+                    string partnerIdP = Session["IdentityProvider"].ToString();
+
+                    SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Initiating SLO with IdP {partnerIdP}.");
+
+                    SAMLServiceProvider.InitiateSLO(Response, null, null, partnerIdP);
+
+                    return new EmptyResult();
+                }
+                else
+                {
+                    // Logout locally.
+                    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                }
+
+                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Identity Provider doesn't support SLO.");
+
+                return RedirectToAction("Index", "Home");
+
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -431,8 +451,44 @@ namespace Cameyo.SamlPoc.Controllers
         {
             get
             {
-                return HttpContext.GetOwinContext().Authentication;
+                return 
+                    HttpContext?.GetOwinContext()?.Authentication ?? 
+                    System.Web.HttpContext.Current.GetOwinContext().Authentication;
             }
+        }
+
+        private ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return 
+                    _signInManager ?? 
+                    HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            set
+            {
+                _signInManager = value;
+            }
+        }
+
+        private ApplicationUserManager UserManager
+        {
+            get
+            {
+                return 
+                    _userManager 
+                    ?? HttpContext?.GetOwinContext()?.GetUserManager<ApplicationUserManager>() ??
+                    System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            set
+            {
+                _userManager = value;
+            }
+        }
+        
+        private SamlIdentityProvidersRepository SamlIdentityProvidersRepository
+        {
+            get => SamlIdentityProvidersRepository.GetInstance();
         }
 
         private void AddErrors(IdentityResult result)

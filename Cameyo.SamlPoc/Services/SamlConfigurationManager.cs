@@ -3,7 +3,7 @@ using ComponentSpace.SAML2.Configuration;
 using System.Configuration;
 using System.Linq;
 
-namespace Cameyo.SamlPoc.WebApp.Services
+namespace Cameyo.SamlPoc.Services
 {
     public static class SamlConfigurationManager
     {
