@@ -39,6 +39,7 @@ namespace Cameyo.SamlPoc.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            ViewBag.IdentityProviders = SamlIdentityProvidersRepository.GetRegisteredIdentityProviders();
             return View();
         }
 
@@ -377,39 +378,16 @@ namespace Cameyo.SamlPoc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            var authenticationType = ((ClaimsIdentity)User.Identity).FindFirstValue(nameof(AuthenticationType));
+
+            var userName = User.Identity.Name;
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
-            var authenticationType = ((ClaimsIdentity)User.Identity).FindFirstValue(nameof(AuthenticationType));
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: User {userName} was logged out locally.");
 
             if (authenticationType == AuthenticationType.Saml.ToString())
             {
-                // return RedirectToAction("LogOff", "SAML");
-
-                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Request for SLO received.");
-
-                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: User was logged out locally.");
-
-                if (SAMLServiceProvider.CanSLO())
-                {
-                    // Request logout at the identity provider.
-                    string partnerIdP = Session["IdentityProvider"].ToString();
-
-                    SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Initiating SLO with IdP {partnerIdP}.");
-
-                    SAMLServiceProvider.InitiateSLO(Response, null, null, partnerIdP);
-
-                    return new EmptyResult();
-                }
-                else
-                {
-                    // Logout locally.
-                    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                }
-
-                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Identity Provider doesn't support SLO.");
-
-                return RedirectToAction("Index", "Home");
-
+                return RedirectToAction("LogOff", "SAML");
             }
 
             return RedirectToAction("Index", "Home");

@@ -180,7 +180,7 @@ namespace Cameyo.SamlPoc.Controllers
             }
 
             // To login at the service provider, initiate single sign-on to the identity provider (SP-initiated SSO).
-            SAMLServiceProvider.InitiateSSO(Response, null, idpName);
+            SAMLServiceProvider.InitiateSSO(Response, returnUrl, idpName);
 
             SamlPocTraceListener.Log("SAML", $"SamlController.SingleSignOn: SSO with IdP {idpName} initiated.");
 
@@ -192,11 +192,6 @@ namespace Cameyo.SamlPoc.Controllers
         public ActionResult LogOff()
         {
             SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Request for SLO received.");
-
-            // Logout locally.
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-
-            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: User was logged out locally.");
 
             if (SAMLServiceProvider.CanSLO())
             {
