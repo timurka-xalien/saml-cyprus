@@ -61,5 +61,22 @@
         "Domain": "kentorsome.net"
       }
     ]
+  },
+  {
+    "Id": "08D29AD0-79A7-4151-B142-8A7E5D069199",
+    "Name": "http://pp-openam.agf.fr:8080/openam",
+    "Description": "AGF Identity Provider",
+    "SignAuthnRequest": true,
+    "SingleSignOnUrl": "http://pp-openam.agf.fr:8080/openam/SSORedirect/metaAlias/idp",
+    "SingleLogoutUrl": "http://pp-openam.agf.fr:8080/openam/IDPSloRedirect/metaAlias/idp",
+    "CertificateFile": "Certificates\\agf.fr.cer",
+    "SingleLogoutSupported": true,
+    "UseEmbeddedCertificate": false,
+    "RegisteredDomains": [
+      {
+        "Id": "50ae2f56-5f56-4b81-b72d-88f19ef89435",
+        "Domain": "agf.fr"
+      }
+    ]
   }
 ]

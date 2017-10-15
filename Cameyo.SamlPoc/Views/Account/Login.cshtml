@@ -71,9 +71,16 @@
         </section>
     </div>
     <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+    <section>  @*Login via Additional IdP*@
+        <p>Login using</p>
+        <hr />
+        <a href="@Url.Action("Login", "SAML", new { domain = "agf.fr" })">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/OpenAM-web-transparent.png"/>
+        </a>
+    </section>
+    @*<section id="socialLoginForm">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>*@
     </div>
 </div>
 
