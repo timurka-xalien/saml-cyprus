@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{75D951
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cameyo.SamlPoc.WebApp", "Cameyo.SamlPoc.WebApp\Cameyo.SamlPoc.WebApp.csproj", "{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cameyo.SamlPoc", "Cameyo.SamlPoc\Cameyo.SamlPoc.csproj", "{830C708E-D57C-436A-8368-9F68E1C096A6}"
 EndProject
 Global
@@ -26,22 +24,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|.NET.Build.0 = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Debug|x86.Build.0 = Debug|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|.NET.ActiveCfg = Release|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|.NET.Build.0 = Release|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|x86.ActiveCfg = Release|Any CPU
-		{71A8FA3D-6D25-4CD4-B9E3-FEEAE83020A7}.Release|x86.Build.0 = Release|Any CPU
 		{830C708E-D57C-436A-8368-9F68E1C096A6}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{830C708E-D57C-436A-8368-9F68E1C096A6}.Debug|.NET.Build.0 = Debug|Any CPU
 		{830C708E-D57C-436A-8368-9F68E1C096A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

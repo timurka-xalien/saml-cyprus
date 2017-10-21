@@ -1,1 +1,0 @@
-﻿The App_Data folder is used for importing SAML metadata.
