@@ -42,7 +42,7 @@
   <ItemGroup>
     <Reference Include="ComponentSpace.SAML2, Version=2.6.0.14, Culture=neutral, PublicKeyToken=7c51d97b3a0a8ff9, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Bin\dotNET40\ComponentSpace.SAML2.dll</HintPath>
+      <HintPath>..\..\..\..\Sources\Lib\ComponentSpace.SAML2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
