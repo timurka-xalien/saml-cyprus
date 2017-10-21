@@ -34,19 +34,26 @@ namespace Cameyo.SamlPoc.Services
             {
                 var identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
 
-                identity.AddClaim(new Claim(nameof(AuthenticationType), authenticationType.ToString()));
+                // Save received attributes as claims
+                InitializeUserClaims(authenticationType, additionalClaims, identity);
 
-                if (additionalClaims != null)
-                {
-                    identity.AddClaims(additionalClaims.Select(attr => new Claim(attr.Key, attr.Value)));
-                }
-
+                // Sign in user
                 _authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = true }, identity);
 
                 return true;
             }
 
             return false;
+        }
+
+        private static void InitializeUserClaims(AuthenticationType authenticationType, IDictionary<string, string> additionalClaims, ClaimsIdentity identity)
+        {
+            identity.AddClaim(new Claim(nameof(AuthenticationType), authenticationType.ToString()));
+
+            if (additionalClaims != null)
+            {
+                identity.AddClaims(additionalClaims.Select(attr => new Claim(attr.Key, attr.Value)));
+            }
         }
     }
 }

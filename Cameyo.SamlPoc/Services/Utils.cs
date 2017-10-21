@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Web;
 
 namespace Cameyo.SamlPoc.Services
 {
@@ -25,8 +21,8 @@ namespace Cameyo.SamlPoc.Services
                 TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 Formatting = Formatting.Indented,
-                //DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-                //Error = (sender, args) => args.ErrorContext.Handled = true,
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                Error = (sender, args) => args.ErrorContext.Handled = true,
             });
         }
 
