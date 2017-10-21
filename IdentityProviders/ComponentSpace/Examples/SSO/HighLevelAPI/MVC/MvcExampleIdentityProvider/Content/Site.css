@@ -1,0 +1,68 @@
+﻿body {
+	font-family: Verdana, Arial, Sans-Serif;
+	font-size: 80%;
+}
+
+h1 {
+	margin: 0px 0px 8px 0px;
+	padding: 0;
+	font-size: 125%;
+}
+
+h2 {
+	margin: 16px 0px 4px 0px;
+	padding: 0;
+	font-size: 90%;
+}
+
+p {
+	font-size: 100%;
+	margin: 0px 0px 8px 0px;
+	padding: 0;
+}
+
+legend {
+	margin: 0px 0px 8px 0px;
+	padding: 0;
+	font-size: 125%;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

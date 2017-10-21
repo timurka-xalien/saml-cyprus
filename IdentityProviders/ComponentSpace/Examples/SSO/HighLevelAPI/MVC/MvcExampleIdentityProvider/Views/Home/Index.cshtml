@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Identity Provider";
+}
+
+<h1>Welcome to the MVC Identity Provider Site</h1>
+<p>
+	You are logged in as @User.Identity.Name.
+</p>
+
+<section id="logoutForm">
+@using (Html.BeginForm("Logout", "Home")) {
+    <p>
+    <input type="submit" value="Logout" />
+    </p>
+}
+</section>

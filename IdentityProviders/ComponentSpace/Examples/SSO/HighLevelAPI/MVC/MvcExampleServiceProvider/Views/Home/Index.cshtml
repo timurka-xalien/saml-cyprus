@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Service Provider";
+}
+
+<h1>Welcome to the MVC Service Provider Site</h1>
+<p>
+	You are logged in as @User.Identity.Name.
+</p>
+
+@{
+    // Display the attributes returned by the identity provider.
+    var attributes = (IDictionary<string, string>)Session[MvcExampleServiceProvider.Controllers.SAMLController.AttributesSessionKey];
+
+    if (attributes != null && attributes.Count > 0) {
+        <h2>User Attributes</h2>
+
+        foreach (var attributeName in attributes.Keys) {
+            <p>@attributeName: @attributes[attributeName]</p>
+        }
+    }
+}
+
+<section id="logoutForm">
+@using (Html.BeginForm("Logout", "Home")) {
+    <p>
+    <input type="submit" value="Logout" />
+    </p>
+}
+</section>
+
+
