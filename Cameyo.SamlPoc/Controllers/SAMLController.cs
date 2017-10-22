@@ -13,8 +13,6 @@ namespace Cameyo.SamlPoc.Controllers
 {
     public class SAMLController : Controller
     {
-        public const string AttributesSessionKey = "";
-
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private AuthenticationService _authenticationService;

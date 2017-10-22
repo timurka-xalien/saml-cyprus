@@ -20,7 +20,6 @@ namespace Cameyo.SamlPoc.Services
 
         public static ApplicationUser FindUser(ApplicationUserManager userManager, string userName, string password)
         {
-            // Put your own logic of finding user here
             return userManager.Find(userName, password);
         }
 
