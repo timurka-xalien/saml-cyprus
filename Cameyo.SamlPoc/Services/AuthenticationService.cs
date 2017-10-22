@@ -28,7 +28,7 @@ namespace Cameyo.SamlPoc.Services
         {
             SamlPocTraceListener.Log("SAML", $"AuthenticationService.Authenticate: Authenticate user {email}");
 
-            var user = _userManager.Find(email, password);
+            var user = SamlHelper.FindUser(_userManager, email, password);
 
             if (user != null)
             {

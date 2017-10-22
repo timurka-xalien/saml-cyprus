@@ -87,7 +87,7 @@ namespace Cameyo.SamlPoc.Controllers
         {
             SamlPocTraceListener.Log("SAML", "SamlController.SignInUserLocally: Sign in user locally.");
 
-            var user = UserManager.FindByName(userName);
+            var user = SamlHelper.FindUser(UserManager, userName, attributes);
 
             if (user == null)
             {
