@@ -114,9 +114,8 @@ namespace Cameyo.SamlPoc.Controllers
                 SamlPocTraceListener.Log("SAML", $"SamlController.SignInUserLocally: Found existing user: {userName}");
             }
 
-            // Add user name to attributes
+            // There might be no attributes
             attributes = attributes ?? new Dictionary<string, string>();
-            attributes[ClaimTypes.Name] = userName;
 
             _authenticationService.Authenticate(AuthenticationType.Saml, userName, userName, attributes);
 

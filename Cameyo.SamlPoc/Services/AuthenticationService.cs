@@ -48,12 +48,17 @@ namespace Cameyo.SamlPoc.Services
 
         private static void InitializeUserClaims(AuthenticationType authenticationType, IDictionary<string, string> additionalClaims, ClaimsIdentity identity)
         {
+            SamlPocTraceListener.Log("SAML", $"AuthenticationService.InitializeUserClaims: Initialize claims of user {identity.Name}");
+
             identity.AddClaim(new Claim(nameof(AuthenticationType), authenticationType.ToString()));
 
             if (additionalClaims != null)
             {
                 identity.AddClaims(additionalClaims.Select(attr => new Claim(attr.Key, attr.Value)));
             }
+
+            SamlPocTraceListener.Log("SAML", $"AuthenticationService.InitializeUserClaims: Initialized claims of user {identity.Name}:\r\n" +
+                Utils.SerializeToJson(identity.Claims.Select(c => new { c.Type, c.Value })));
         }
     }
 }
