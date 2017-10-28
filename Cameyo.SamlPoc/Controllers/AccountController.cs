@@ -74,15 +74,14 @@ namespace Cameyo.SamlPoc.Controllers
         {
             var authenticationType = ((ClaimsIdentity)User.Identity).FindFirstValue(nameof(AuthenticationType));
 
-            var userName = User.Identity.Name;
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-
-            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: User {userName} was logged out locally.");
-
             if (authenticationType == AuthenticationType.Saml.ToString())
             {
                 return RedirectToAction("LogOff", "SAML");
             }
+
+            SamlPocTraceListener.Log("SAML", $"AccountController.Logout: Log out user {User.Identity.Name} locally.");
+
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
             return RedirectToAction("Index", "Home");
         }

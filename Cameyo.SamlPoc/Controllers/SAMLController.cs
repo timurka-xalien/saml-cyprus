@@ -13,6 +13,8 @@ namespace Cameyo.SamlPoc.Controllers
 {
     public class SAMLController : Controller
     {
+        private const string IdentityProviderClaimType = "saml:IdentityProvider";
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private AuthenticationService _authenticationService;
@@ -69,6 +71,10 @@ namespace Cameyo.SamlPoc.Controllers
             // Login automatically using the asserted identity.
             // This example uses forms authentication. Your application can use any authentication method you choose.
             // There are no restrictions on the method of authentication.
+
+            // Save idp name to claims. We will reuse it on logout
+            attributes = attributes ?? new Dictionary<string, string>();
+            attributes[IdentityProviderClaimType] = partnerIdP;
 
             var result = SignInUserLocally(userName, attributes);
 
@@ -179,9 +185,6 @@ namespace Cameyo.SamlPoc.Controllers
 
             SamlPocTraceListener.Log("SAML", $"SamlController.SingleSignOn: SSO with IdP {idpName} initiated.");
 
-            // Save idp name to session. We will reuse it on logout
-            Session["IdentityProvider"] = idpName;
-
             return new EmptyResult();
         }
 
@@ -189,25 +192,23 @@ namespace Cameyo.SamlPoc.Controllers
         {
             SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Request for SLO received.");
 
-            if (SAMLServiceProvider.CanSLO())
-            {
-                string partnerIdP = Session["IdentityProvider"]?.ToString();
-
-                if (partnerIdP != null)
-                {
-                    SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Initiating SLO with IdP {partnerIdP}.");
-
-                    // Request logout at the identity provider.
-                    SAMLServiceProvider.InitiateSLO(Response, null, null, partnerIdP);
-
-                    return new EmptyResult();
-                }
-            }
+            string partnerIdP = ((ClaimsIdentity)User.Identity).FindFirstValue(IdentityProviderClaimType);
 
             // Logout locally.
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Log out user {User.Identity.Name} locally.");
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
-            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Identity Provider doesn't support SLO.");
+            if (SAMLServiceProvider.CanSLO(partnerIdP))
+            {
+                SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Initiating SLO with IdP {partnerIdP}.");
+
+                // Request logout at the identity provider.
+                SAMLServiceProvider.InitiateSLO(Response, null, null, partnerIdP);
+
+                return new EmptyResult();
+            }
+
+            SamlPocTraceListener.Log("SAML", $"SamlController.Logout: Identity Provider {partnerIdP} doesn't support SLO.");
 
             return RedirectToAction("Index", "Home");
         }
