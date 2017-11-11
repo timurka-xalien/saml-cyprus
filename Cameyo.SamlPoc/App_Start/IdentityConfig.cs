@@ -47,7 +47,7 @@ namespace Cameyo.SamlPoc
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = false, // To handle possible situations when SAML IdPs won't provide email
+                RequireUniqueEmail = true, 
             };
 
             // Configure validation logic for passwords

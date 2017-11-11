@@ -91,14 +91,13 @@ namespace Cameyo.SamlPoc.Controllers
         {
             SamlPocTraceListener.Log("SAML", "SamlController.SignInUserLocally: Sign in user locally.");
 
-            var user = SamlHelper.FindUser(UserManager, userName, attributes);
+            // Extract user email
+            var email = SamlHelper.ExtractUserEmailFromSamlAttributes(userName, attributes);
+            var user = _authenticationService.FindUser(UserManager, email);
 
             if (user == null)
             {
-                SamlPocTraceListener.Log("SAML", $"SamlController.SignInUserLocally: Register new user: {userName}");
-
-                // Extract user email
-                var email = SamlHelper.ExtractUserEmailFromSamlAttributes(userName, attributes);
+                SamlPocTraceListener.Log("SAML", $"SamlController.SignInUserLocally: Register new user: {userName} with email {email}");
 
                 // Register new user
                 user = new ApplicationUser { UserName = userName, Email = email };
@@ -123,7 +122,11 @@ namespace Cameyo.SamlPoc.Controllers
             // There might be no attributes
             attributes = attributes ?? new Dictionary<string, string>();
 
-            _authenticationService.Authenticate(AuthenticationType.Saml, userName, userName, attributes);
+            _authenticationService.Authenticate(
+                AuthenticationType.Saml, 
+                email,
+                password: userName, // Use fake password
+                additionalClaims: attributes);
 
             return null;
         }
